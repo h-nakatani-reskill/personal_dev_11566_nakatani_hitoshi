@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品追加</title>
+</head>
+<body>
+	<form action="/tasks/add" method="post">
+		<table border="1">
+			<tr>
+				<th>タイトル</th>
+				<td><input name="title"></td>
+			</tr>
+			<tr>
+				<th>カテゴリーID</th>
+				<td><input name="categoryId"></td>
+			</tr>
+		</table>
+		<button>登録</button>
+	</form>
+</body>
+</html>

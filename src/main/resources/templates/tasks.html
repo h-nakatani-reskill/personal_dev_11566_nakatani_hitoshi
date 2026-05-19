@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>全タスク</h1>
+	<form>
+		<table border="1">
+			<tr>
+				<th>タイトル</th>
+				<th>カテゴリー</th>
+				<th>変更</th>
+				<th>更新</th>
+			</tr>
+			<tr>
+				<td>買い物</td>
+				<td>日常</td>
+				<form action="/tasks/edit" method="get">
+					<td>
+						<button>変更</button>
+					</td>
+				</form>
+				<form action="/tasks/delete" method="post">
+					<td>
+						<button>削除</button>
+					</td>
+				</form>
+			</tr>
+		</table>
+	</form>
+	<a href="/tasks/add">新規登録</a>
+</body>
+</html>
