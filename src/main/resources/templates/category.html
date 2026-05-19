@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>カテゴリー一覧</h1>
+	<table border="1">
+		<tr>
+			<th>カテゴリーID</th>
+			<th>カテゴリー名</th>
+			<th>変更</th>
+			<th>更新</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>ビジネス</td>
+			<form action="/category/edit" method="get">
+				<td>
+					<button>変更</button>
+				</td>
+			</form>
+			<form action="/category/delete" method="post">
+				<td>
+					<button>削除</button>
+				</td>
+			</form>
+		</tr>
+	</table>
+	<a href="/category/add">カテゴリー追加</a>
+</body>
+</html>

@@ -2,18 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>タスク追加</title>
+<title>カテゴリー追加</title>
 </head>
 <body>
-	<form action="/tasks/add" method="post">
-		<table border="1">
-			<tr>
-				<th>タイトル</th>
-				<td><input name="title"></td>
-			</tr>
+	<h1>カテゴリー追加</h1>
+	
+	<form action="/category/add" method="post">
+		<table>
 			<tr>
 				<th>カテゴリーID</th>
 				<td><input name="categoryId"></td>
+			</tr>
+			<tr>
+				<th>カテゴリー名</th>
+				<td><input name="categoryName"></td>
 			</tr>
 		</table>
 		<button>登録</button>
