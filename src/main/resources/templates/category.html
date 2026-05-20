@@ -6,6 +6,7 @@
 </head>
 <body>
 	<h1>カテゴリー一覧</h1>
+	<a href="/tasks">タスク一覧</a>
 	<table border="1">
 		<tr>
 			<th>カテゴリーID</th>
@@ -13,19 +14,19 @@
 			<th>変更</th>
 			<th>更新</th>
 		</tr>
-		<tr>
-			<td>1</td>
-			<td>ビジネス</td>
-			<form action="/category/edit" method="get">
-				<td>
-					<button>変更</button>
-				</td>
-			</form>
-			<form action="/category/delete" method="post">
-				<td>
+		<tr th:each="category:${categories}">
+			<td th:text="${category.id}"></td>
+			<td th:text="${category.name}"></td>
+			<td>
+				<form th:action="@{/categories/{categoryId}/edit(categoryId=${category.id})}" method="get">
+					<button>更新</button>
+				</form>
+			</td>
+			<td>
+				<form th:action="@{/categories/{categoryId}/delete(categoryId=${category.id})}" method="post">
 					<button>削除</button>
-				</td>
-			</form>
+				</form>
+			</td>
 		</tr>
 	</table>
 	<a href="/category/add">カテゴリー追加</a>

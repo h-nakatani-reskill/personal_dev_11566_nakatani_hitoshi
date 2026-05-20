@@ -1,11 +1,27 @@
 package com.example.demo.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.entity.Task;
+import com.example.demo.repository.TaskRepository;
 
 @Controller
 public class TaskController {
+
+	private final TaskRepository taskRepository;
+
+	public TaskController(TaskRepository taskRepository) {
+		this.taskRepository = taskRepository;
+	}
 
 	// 初期ログイン画面表示
 	@GetMapping({ "/", "/login", "/logout" })
@@ -32,8 +48,13 @@ public class TaskController {
 	}
 
 	// タスク一覧表示
-	@GetMapping({ "tasks", "/tasks/view" })
-	public String index() {
+	@GetMapping({ "/tasks", "/tasks/view" })
+	public String index(Model model) {
+
+		List<Task> taskList = taskRepository.findAll();
+
+		model.addAttribute("tasks", taskList);
+
 		return "tasks";
 	}
 
@@ -45,25 +66,66 @@ public class TaskController {
 
 	// 追加処理
 	@PostMapping("/tasks/add")
-	public String add() {
-		return "tasks";
+	public String add(
+			@RequestParam(defaultValue = "") Integer id,
+			@RequestParam(defaultValue = "") Integer categoryId,
+			@RequestParam(defaultValue = "") String recordDay,
+			@RequestParam(defaultValue = "") String title,
+			@RequestParam(defaultValue = "") String memo) {
+
+		Calendar cl = Calendar.getInstance();
+
+		//日付をyyyy/MM/ddの形で出力する
+		SimpleDateFormat today = new SimpleDateFormat("yyyy/MM/dd");
+		String recordToday = today.format(cl.getTime());
+
+		// 進捗は未達成にする
+		Integer Nonprogress = 1;
+
+		Task task = new Task(id, categoryId, recordToday, title, Nonprogress, memo);
+
+		taskRepository.save(task);
+
+		return "redirect:/tasks";
 	}
 
-	// 変更画面表示
-	@GetMapping("/tasks/edit")
-	public String edit() {
-		return "editTasks";
+	// 更新画面表示
+	@GetMapping("/tasks/{id}/edit")
+	public String edit(@PathVariable Integer id, Model model) {
+
+		Task task = taskRepository.findById(id).get();
+		model.addAttribute("task", task);
+		return "editTask";
 	}
 
-	// 変更処理
-	@PostMapping("/tasks/edit")
-	public String update() {
-		return "tasks";
+	// 更新処理
+	@PostMapping("/tasks/{id}/edit")
+	public String update(
+			@PathVariable Integer id,
+			@RequestParam(defaultValue = "") Integer categoryId,
+			@RequestParam(defaultValue = "") String recordDay,
+			@RequestParam(defaultValue = "") String title,
+			@RequestParam(defaultValue = "") Integer progress,
+			@RequestParam(defaultValue = "") String memo) {
+
+		Task task = taskRepository.findById(id).get();
+
+		task.setCategoryId(categoryId);
+		task.setRecordDay(recordDay);
+		task.setTitle(title);
+		task.setProgress(progress);
+		task.setMemo(memo);
+
+		taskRepository.save(task);
+
+		return "redirect:/tasks";
 	}
 
 	// 削除処理
-	@PostMapping("/tasks/delete")
-	public String delete() {
+	@PostMapping("/tasks/{id}/delete")
+	public String delete(@PathVariable Integer id) {
+		// tasksテーブルから削除
+		taskRepository.deleteById(id);
 		return "redirect:/tasks";
 	}
 }

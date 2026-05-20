@@ -5,18 +5,30 @@
 <title>タスク編集</title>
 </head>
 <body>
-	<form action="/tasks" method="post">
+	<form th:action="@{/tasks/{taskId}/edit(taskId=${task.id})}" method="post">
 		<table border="1">
 			<tr>
-				<th>タイトル</th>
-				<td><input name="title" value="買い物"></td>
+				<th>カテゴリーID</th>
+				<td><input name="categoryId" th:value="${task.categoryId}"></td>
 			</tr>
 			<tr>
-				<th>カテゴリーID</th>
-				<td><input name="categoryId"></td>
+				<th>登録日</th>
+				<td><input name="recordDay" th:value="${task.recordDay}"></td>
+			</tr>
+			<tr>
+				<th>タイトル</th>
+				<td><input name="title" th:value="${task.title}"></td>
+			</tr>
+			<tr>
+				<th>進捗</th>
+				<td><input name="progress" th:value="${task.progress}"></td>
+			</tr>
+			<tr>
+				<th>内容</th>
+				<td><input name="memo" th:value="${task.memo}"></td>
 			</tr>
 		</table>
-		<button>変更</button>
+		<button>更新</button>
 	</form>
 </body>
 </html>
