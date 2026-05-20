@@ -23,30 +23,6 @@ public class TaskController {
 		this.taskRepository = taskRepository;
 	}
 
-	// 初期ログイン画面表示
-	@GetMapping({ "/", "/login", "/logout" })
-	public String login() {
-		return "login";
-	}
-
-	// ログインボタン押した際の処理
-	@PostMapping("/tasks/view")
-	public String users() {
-		return "redirect:/tasks";
-	}
-
-	// 新規会員登録画面表示
-	@GetMapping("/user/add")
-	public String adduser() {
-		return "addUser";
-	}
-
-	// 登録ボタン押した際の処理
-	@PostMapping("/login")
-	public String storeuser() {
-		return "redirect:/login";
-	}
-
 	// タスク一覧表示
 	@GetMapping({ "/tasks", "/tasks/view" })
 	public String index(Model model) {

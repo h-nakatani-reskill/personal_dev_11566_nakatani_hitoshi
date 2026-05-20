@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.servlet.http.HttpSession;
@@ -51,7 +52,7 @@ public class UserController {
 		}
 
 		List<User> userList = userRepository.findByEmailAndPassword(email, password);
-		// 名前が空の場合はエラーにする
+		// メールアドレスとパスワードが一致していないとエラーにする
 		if (userList == null || userList.size() == 0) {
 			model.addAttribute("message", "メールアドレスとパスワードが一致しませんでした");
 			return "login";
@@ -65,4 +66,44 @@ public class UserController {
 		return "redirect:/tasks";
 	}
 
+	//  会員登録画面の表示
+	@GetMapping("/user/add")
+	public String adduser() {
+		return "addUser";
+	}
+
+	// 登録ボタン押した際の処理
+	@PostMapping("/user/add")
+	public String storeuser(
+			@RequestParam(defaultValue = "") String name,
+			@RequestParam(defaultValue = "") String email,
+			@RequestParam(defaultValue = "") String password,
+			Model model) {
+
+		// エラーチェック
+		List<String> errorList = new ArrayList<String>();
+		if (name.length() == 0) {
+			errorList.add("名前は必須です");
+		}
+		if (email.length() == 0) {
+			errorList.add("メールアドレスは必須です");
+		}
+
+		List<User> userList = userRepository.findByEmail(email);
+
+		if (userList != null && userList.size() == 0) {
+			errorList.add("登録済みのメールアドレスです");
+		}
+
+		if (password.length() == 0) {
+			errorList.add("パスワードは必須です");
+		}
+
+		if (errorList.size() > 0) {
+			model.addAttribute("errorList", errorList);
+			model.addAttribute(name);
+			model.addAttribute(email);
+		}
+		return "redirect:/login";
+	}
 }
