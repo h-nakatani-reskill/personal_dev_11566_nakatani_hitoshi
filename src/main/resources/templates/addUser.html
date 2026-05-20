@@ -7,18 +7,21 @@
 <body>
 	<h1>新規会員登録</h1>
 	<form action="/login" method="post">
+		<ul th:if="${errorList}" class="error">
+			<li th:each="error:$${errorList}" th:text="${error}"></li>
+		</ul>
 		<table border="1">
 			<tr>
 				<th>名前</th>
-				<td><input name="name" placeholder="名前"></td>
+				<td><input name="name" placeholder="名前" th:value="${name}"></td>
 			</tr>
 			<tr>
 				<th>メールアドレス</th>
-				<td><input name="email" placeholder="メールアドレス"></td>
+				<td><input name="email" placeholder="メールアドレス" th:value="${email}"></td>
 			</tr>
 			<tr>
 				<th>電話</th>
-				<td><input name="password" placeholder="パスワード"></td>
+				<td><input name="password" placeholder="パスワード" th:value="${password}"></td>
 			</tr>
 		</table>
 		<button>登録</button>

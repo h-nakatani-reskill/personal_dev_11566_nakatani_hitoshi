@@ -7,10 +7,10 @@
 <body>
 	<h1>ようこそ</h1>
 	<form action="/tasks/view" method="post">
-		<input name="name" placeholder="名前">
 		<br><input name="email" placeholder="メールアドレス">
 		<br><input name="password" placeholder="パスワード">
 		<br><button>ログイン</button>
+		<br><span th:text="${message}" style="color: red"></span>
 	</form>
 	<a href="/user/add">新規会員登録</a>
 </body>

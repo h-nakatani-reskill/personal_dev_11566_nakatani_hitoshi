@@ -20,6 +20,10 @@ public class Categories {
 	public Categories() {
 	}
 
+	public Categories(String name) {
+		this(null, name);
+	}
+
 	public Categories(Integer id, String name) {
 		this.id = id;
 		this.name = name;

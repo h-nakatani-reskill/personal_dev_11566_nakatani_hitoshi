@@ -5,17 +5,13 @@
 <title>カテゴリー追加</title>
 </head>
 <body>
-	<h1>カテゴリー追加</h1>
+	<h1>カテゴリー登録</h1>
 	
-	<form action="/category/add" method="post">
-		<table border="1">
-			<tr>
-				<th>カテゴリーID</th>
-				<td><input name="categoryId"></td>
-			</tr>
+	<form action="/categories/add" method="post">
+		<table border="1"> 
 			<tr>
 				<th>カテゴリー名</th>
-				<td><input name="categoryName"></td>
+				<td><input type="text" name="name"></td>
 			</tr>
 		</table>
 		<button>登録</button>

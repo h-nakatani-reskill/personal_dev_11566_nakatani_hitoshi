@@ -22,64 +22,65 @@ public class CategoryController {
 	}
 
 	// カテゴリー一覧表示
-	@GetMapping("/category")
+	@GetMapping("/categories")
 	public String index(Model model) {
 
 		List<Categories> categoryList = categoryRepository.findAll();
 
 		model.addAttribute("categories", categoryList);
 
-		return "category";
+		return "categories";
 	}
 
 	// 追加画面表示
-	@GetMapping("/category/add")
+	@GetMapping("/categories/add")
 	public String create() {
-		return "categoryAdd";
+		return "addCategory";
 	}
 
 	// 追加処理
-	@PostMapping("/category/add")
+	@PostMapping("/categories/add")
 	public String add(
-			@RequestParam(defaultValue = "") Integer id,
 			@RequestParam(defaultValue = "") String name) {
 
-		Categories categories = new Categories(id, name);
+		Categories category = new Categories(name);
 
-		categoryRepository.save(categories);
-
-		return "redirect:/category";
-	}
-
-	// 変更画面表示
-	@GetMapping("/category/{id}/edit")
-	public String edit(@PathVariable Integer id, Model model) {
-
-		Categories categories = categoryRepository.findById(id).get();
-
-		model.addAttribute(categories);
-
-		return "categoryEdit";
-	}
-
-	// 更新処理
-	@PostMapping("/category/{id}/edit")
-	public String update(
-			@PathVariable Integer id,
-			@RequestParam(defaultValue = "") String name) {
-
-		Categories categories = categoryRepository.findById(id).get();
-
-		categories.setName(name);
-
-		categoryRepository.save(categories);
+		categoryRepository.save(category);
 
 		return "redirect:/categories";
 	}
 
-	// 変更処理
-	@PostMapping("/category/edit")
-	public String update() {
-		return "redirect:/category";
+	// 更新画面表示
+	@GetMapping("/categories/{id}/edit")
+	public String edit(@PathVariable Integer id, Model model) {
+
+		Categories category = categoryRepository.findById(id).get();
+
+		model.addAttribute("category", category);
+
+		return "editCategory";
+	}
+
+	// 更新処理
+	@PostMapping("/categories/{id}/edit")
+	public String update(
+			@PathVariable Integer id,
+			@RequestParam(defaultValue = "") String name) {
+
+		Categories category = categoryRepository.findById(id).get();
+
+		category.setName(name);
+
+		categoryRepository.save(category);
+
+		return "redirect:/categories";
+	}
+
+	// 削除処理
+	@PostMapping("/categories/{id}/delete")
+	public String delete(@PathVariable Integer id) {
+		// tasksテーブルから削除
+		categoryRepository.deleteById(id);
+		return "redirect:/categories";
 	}
 }
