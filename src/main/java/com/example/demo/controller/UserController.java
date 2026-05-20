@@ -16,6 +16,7 @@ import com.example.demo.repository.UserRepository;
 
 @Controller
 public class UserController {
+
 	private final HttpSession session;
 	private final Account account;
 	private final UserRepository userRepository;
