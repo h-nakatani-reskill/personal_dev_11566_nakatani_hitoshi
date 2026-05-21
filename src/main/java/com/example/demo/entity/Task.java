@@ -22,6 +22,7 @@ public class Task {
 	@Column(name = "record_day")
 	private String recordDay;
 	private String title;
+	private String level;
 	private Integer progress;
 	private String memo;
 
@@ -41,11 +42,13 @@ public class Task {
 		this.memo = memo;
 	}
 
-	public Task(Integer id, Integer categoryId, String recordDay, String title, Integer progress, String memo) {
+	public Task(Integer id, Integer categoryId, String recordDay, String title, String level, Integer progress,
+			String memo) {
 		this.id = id;
 		this.categoryId = categoryId;
 		this.recordDay = recordDay;
 		this.title = title;
+		this.level = level;
 		this.progress = progress;
 		this.memo = memo;
 	}
@@ -89,6 +92,14 @@ public class Task {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
 	}
 
 	public Integer getProgress() {

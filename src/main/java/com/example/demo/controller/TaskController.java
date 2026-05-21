@@ -66,6 +66,7 @@ public class TaskController {
 			@RequestParam(defaultValue = "") Integer categoryId,
 			@RequestParam(defaultValue = "") String recordDay,
 			@RequestParam(defaultValue = "") String title,
+			@RequestParam(defaultValue = "") String level,
 			@RequestParam(defaultValue = "") Integer progress,
 			@RequestParam(defaultValue = "") String memo,
 			Model model) {
@@ -81,7 +82,7 @@ public class TaskController {
 		SimpleDateFormat today = new SimpleDateFormat("yyyy/MM/dd");
 		String recordToday = today.format(cl.getTime());
 
-		Task task = new Task(id, categoryId, recordToday, title, progress, memo);
+		Task task = new Task(id, categoryId, recordToday, title, level, progress, memo);
 
 		taskRepository.save(task);
 
@@ -104,6 +105,7 @@ public class TaskController {
 			@RequestParam(defaultValue = "") Integer categoryId,
 			@RequestParam(defaultValue = "") String recordDay,
 			@RequestParam(defaultValue = "") String title,
+			@RequestParam(defaultValue = "") String level,
 			@RequestParam(defaultValue = "") Integer progress,
 			@RequestParam(defaultValue = "") String memo,
 			Model model) {
@@ -118,6 +120,7 @@ public class TaskController {
 		task.setCategoryId(categoryId);
 		task.setRecordDay(recordDay);
 		task.setTitle(title);
+		task.setLevel(level);
 		task.setProgress(progress);
 		task.setMemo(memo);
 
