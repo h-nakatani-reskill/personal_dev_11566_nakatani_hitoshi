@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>タスク追加</title>
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+	<header th:replace="~{header}"></header>
+	<hr>
 	<h1>タスク追加</h1>
 	
 	<form action="/tasks/add" method="post">
@@ -28,5 +31,7 @@
 		</table>
 		<button>登録</button>
 	</form>
+	</main>
+	<footer th:replace="~{footer}"></footer>
 </body>
 </html>

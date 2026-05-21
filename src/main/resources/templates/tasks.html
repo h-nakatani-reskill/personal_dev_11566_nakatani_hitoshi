@@ -3,14 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>タスク一覧</title>
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+	<header th:replace="~{header}"></header>
 	<main>
-	<h1>タスク一覧</h1>
-	<a href="/tasks">タスク一覧</a>
-	<a href="/tasks">ビジネス</a>
-	<a href="/tasks">プライベート</a>
-	
 	<table border="1">
 		<tr>
 			<th>登録日</th>
@@ -24,7 +21,7 @@
 		<tr th:each="task:${tasks}">
 			<td th:text="${task.recordDay}"></td>
 			<td th:text="${task.title}"></td>
-			<td th:text="${task.categoryId}"></td>
+			<td th:text="${task.categories.name}"></td>
 			<td th:text="${task.progress}"></td>
 			<td th:text="${task.memo}"></td>
 			<td>
@@ -42,6 +39,6 @@
 	</main>
 	<a href="/tasks/add">新規登録</a>
 	<a href="/categories">カテゴリー一覧</a>
-
+	<footer th:replace="~{footer}"></footer>
 </body>
 </html>

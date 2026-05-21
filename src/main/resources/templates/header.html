@@ -1,0 +1,13 @@
+<header>
+	<h1><a href="/tasks">お薬日記帳</a></h1>
+	<span th:text="${@account.name}+'さんがログイン中'"></span>
+	<a href="/logout">ログアウト</a>
+	<hr>
+	<nav>
+	<a href="/tasks">タスク一覧</a>
+	<a th:each="category:${categories}"
+		th:href="@{/tasks(categoryId=${category.id})}"
+		th:text="${category.name}"
+		style="margin-right: 5px;"></a>
+	</nav>
+</header>

@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>タスク編集</title>
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-	<form th:action="@{/categories/{categoryId}/edit(categoryId=${category.id})}" method="post">
+	<header th:replace="~{header}"></header>
+	<main>
+	<form th:action="@{/tasks/{taskId}/edit(taskId=${task.id})}" method="post">
 		<table border="1">
 			<tr>
 				<th>カテゴリーID</th>
@@ -30,5 +33,7 @@
 		</table>
 		<button>更新</button>
 	</form>
+	</main>
+	<footer th:replace="~{footer}"></footer>
 </body>
 </html>

@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+/*全体*/
+
+body{
+	background-color: #F5FFFA;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/*ヘッダーフッター*/
+header,nav,footer{
+	background-color: #77DF6D; /*背景色*/
+	color: #ffffff; /*文字色*/
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+/*ヘッダー内の見出し*/
+header h1{
+	font-size: 20pt;
+	margin: 10px auto;
+}
+
+/*ボタン*/
+button{
+	margin: 2px;
+	padding: 5px 20px;
+	background-color: #F06060;
+	color: #ffffff;
+	border: none;
+	width: 150px;
+	cursor: pointer;
+}
+
+/*罫線*/
+hr{
+	border-top:2px #f2f7ef;
+}
+
+/*メイン*/
+main{
+	background-color: #ffffff;
+	min-height: 50px;
+	padding: 20px;
+}
+
+/*テーブルの線*/
+table,th,td{
+	border-collapse: collapse;
+	background: #ffffff;
+	border: 1px solid #50bba0;
+}
+
+/*テーブル*/
+table{
+	margin: 5px auto;
+	min-width: 800px;
+}
+
+table th{
+	background: #50bba0;
+	color: #ffffff;
+}
+
+/* エラーメッセージ */
+ul.error {
+	color: red;
+	list-style: none;
+	padding-left: 0;
+}

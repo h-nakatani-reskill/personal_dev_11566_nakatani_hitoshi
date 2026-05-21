@@ -12,6 +12,9 @@ public class Account {
 	private String name;
 
 	// コンストラクタ
+	public Account() {
+	}
+
 	public Account(Integer id, String name) {
 		this.id = id;
 		this.name = name;

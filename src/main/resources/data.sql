@@ -1,5 +1,5 @@
 --ユーザーテーブルデータ
-INSERT INTO users(email,name,password) VALUES('tanaka@aaa.com','田中一郎','tanaka123');
+INSERT INTO users(name,email,password) VALUES('田中一郎','tanaka@aaa.com','tanaka123');
 --INSERT INTO users(email,name,password) VALUES('suzuki@bbb.com','鈴木次郎','suzuki456');
 --INSERT INTO users(email,name,password) VALUES('kato@ccc.com','加藤三郎','kato123');
 

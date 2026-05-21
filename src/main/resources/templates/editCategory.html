@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+	<header th:replace="~{header}"></header>
+	<main>
 	<h1>カテゴリー更新</h1>
 	<form th:action="'/categories/'+${category.id}+'/edit'" method="post">
 		<table>
@@ -19,5 +22,9 @@
 		</table>
 		<button>更新</button>
 	</form>
+	</main>
+	<a href="/tasks/add">新規登録</a>
+	<a href="/categories">カテゴリー一覧</a>
+	<footer th:replace="~{footer}"></footer>
 </body>
 </html>

@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,11 +19,16 @@ public class Task {
 	private Integer id;
 	@Column(name = "category_id")
 	private Integer categoryId;
+
 	@Column(name = "record_day")
 	private String recordDay;
 	private String title;
 	private Integer progress;
 	private String memo;
+
+	@ManyToOne
+	@JoinColumn(name = "category_id", insertable = false, updatable = false)
+	private Categories categories;
 
 	// コンストラクタ
 	public Task() {
@@ -59,6 +66,14 @@ public class Task {
 
 	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	public Categories getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Categories categories) {
+		this.categories = categories;
 	}
 
 	public String getRecordDay() {

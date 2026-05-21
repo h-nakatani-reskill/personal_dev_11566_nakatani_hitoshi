@@ -60,6 +60,7 @@ public class UserController {
 
 		User user = userList.get(0);
 
+		// セッション管理されたアカウントに情報をセット
 		account.setId(user.getId());
 		account.setName(user.getName());
 
@@ -67,13 +68,13 @@ public class UserController {
 	}
 
 	//  会員登録画面の表示
-	@GetMapping("/user/add")
+	@GetMapping("/account")
 	public String adduser() {
 		return "addUser";
 	}
 
 	// 登録ボタン押した際の処理
-	@PostMapping("/user/add")
+	@PostMapping("/account")
 	public String storeuser(
 			@RequestParam(defaultValue = "") String name,
 			@RequestParam(defaultValue = "") String email,
@@ -81,7 +82,7 @@ public class UserController {
 			Model model) {
 
 		// エラーチェック
-		List<String> errorList = new ArrayList<String>();
+		List<String> errorList = new ArrayList<>();
 		if (name.length() == 0) {
 			errorList.add("名前は必須です");
 		}
@@ -91,7 +92,7 @@ public class UserController {
 
 		List<User> userList = userRepository.findByEmail(email);
 
-		if (userList != null && userList.size() == 0) {
+		if (userList != null && userList.size() > 0) {
 			errorList.add("登録済みのメールアドレスです");
 		}
 
@@ -103,7 +104,13 @@ public class UserController {
 			model.addAttribute("errorList", errorList);
 			model.addAttribute(name);
 			model.addAttribute(email);
+			return "addUser";
 		}
-		return "redirect:/login";
+
+		User user = new User(name, email, password);
+
+		userRepository.save(user);
+
+		return "redirect:/";
 	}
 }

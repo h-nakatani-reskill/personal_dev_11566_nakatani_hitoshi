@@ -11,23 +11,42 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Categories;
 import com.example.demo.entity.Task;
+import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.TaskRepository;
 
 @Controller
 public class TaskController {
 
+	private final CategoryRepository categoryRepository;
+
 	private final TaskRepository taskRepository;
 
-	public TaskController(TaskRepository taskRepository) {
+	public TaskController(TaskRepository taskRepository, CategoryRepository categoryRepository) {
 		this.taskRepository = taskRepository;
+		this.categoryRepository = categoryRepository;
 	}
 
 	// タスク一覧表示
-	@GetMapping({ "/tasks", "/tasks/view" })
-	public String index(Model model) {
+	@GetMapping("/tasks")
+	public String index(
+			@RequestParam(defaultValue = "") Integer categoryId,
+			Model model) {
 
-		List<Task> taskList = taskRepository.findAll();
+		// categoriesテーブルから全カテゴリーを取得
+		List<Categories> categoryList = categoryRepository.findAll();
+
+		model.addAttribute("categories", categoryList);
+
+		// 商品一覧orカテゴリー一覧を取得
+		List<Task> taskList = null;
+
+		if (categoryId == null) {
+			taskList = taskRepository.findAll();
+		} else {
+			taskList = taskRepository.findByCategoryId(categoryId);
+		}
 
 		model.addAttribute("tasks", taskList);
 
