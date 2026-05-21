@@ -54,6 +54,11 @@ public class CategoryController {
 	@GetMapping("/categories/{id}/edit")
 	public String edit(@PathVariable Integer id, Model model) {
 
+		// categoriesテーブルから全カテゴリーを取得
+		List<Categories> categoryList = categoryRepository.findAll();
+
+		model.addAttribute("categories", categoryList);
+
 		Categories category = categoryRepository.findById(id).get();
 
 		model.addAttribute("category", category);
@@ -65,7 +70,13 @@ public class CategoryController {
 	@PostMapping("/categories/{id}/edit")
 	public String update(
 			@PathVariable Integer id,
-			@RequestParam(defaultValue = "") String name) {
+			@RequestParam(defaultValue = "") String name,
+			Model model) {
+
+		// categoriesテーブルから全カテゴリーを取得
+		List<Categories> categoryList = categoryRepository.findAll();
+
+		model.addAttribute("categories", categoryList);
 
 		Categories category = categoryRepository.findById(id).get();
 

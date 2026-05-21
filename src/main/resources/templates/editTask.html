@@ -6,34 +6,37 @@
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+	<div class="wrapper">
 	<header th:replace="~{header}"></header>
 	<main>
-	<form th:action="@{/tasks/{taskId}/edit(taskId=${task.id})}" method="post">
-		<table border="1">
-			<tr>
-				<th>カテゴリーID</th>
-				<td><input name="categoryId" th:value="${task.categoryId}"></td>
-			</tr>
-			<tr>
-				<th>登録日</th>
-				<td><input name="recordDay" th:value="${task.recordDay}"></td>
-			</tr>
-			<tr>
-				<th>タイトル</th>
-				<td><input name="title" th:value="${task.title}"></td>
-			</tr>
-			<tr>
-				<th>進捗</th>
-				<td><input name="progress" th:value="${task.progress}"></td>
-			</tr>
-			<tr>
-				<th>内容</th>
-				<td><input name="memo" th:value="${task.memo}"></td>
-			</tr>
-		</table>
-		<button>更新</button>
-	</form>
+		<h1>お薬登録</h1>
+		<form th:action="@{/tasks/{taskId}/edit(taskId=${task.id})}" method="post">
+			<table border="1">
+				<tr>
+					<th>カテゴリーID</th>
+					<td><input name="categoryId" th:value="${task.categoryId}"></td>
+				</tr>
+				<tr>
+					<th>もらった日</th>
+					<td><input name="recordDay" th:value="${task.recordDay}"></td>
+				</tr>
+				<tr>
+					<th>タイプ</th>
+					<td><input name="title" th:value="${task.title}"></td>
+				</tr>
+				<tr>
+					<th>残量</th>
+					<td><input name="progress" th:value="${task.progress}"></td>
+				</tr>
+				<tr>
+					<th>飲むタイミングと量</th>
+					<td><input name="memo" th:value="${task.memo}"></td>
+				</tr>
+			</table>
+			<button>更新</button>
+		</form>
 	</main>
 	<footer th:replace="~{footer}"></footer>
+	</div>
 </body>
 </html>

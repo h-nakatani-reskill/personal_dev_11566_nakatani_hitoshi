@@ -66,7 +66,14 @@ public class TaskController {
 			@RequestParam(defaultValue = "") Integer categoryId,
 			@RequestParam(defaultValue = "") String recordDay,
 			@RequestParam(defaultValue = "") String title,
-			@RequestParam(defaultValue = "") String memo) {
+			@RequestParam(defaultValue = "") Integer progress,
+			@RequestParam(defaultValue = "") String memo,
+			Model model) {
+
+		// categoriesテーブルから全カテゴリーを取得
+		List<Categories> categoryList = categoryRepository.findAll();
+
+		model.addAttribute("categories", categoryList);
 
 		Calendar cl = Calendar.getInstance();
 
@@ -74,10 +81,7 @@ public class TaskController {
 		SimpleDateFormat today = new SimpleDateFormat("yyyy/MM/dd");
 		String recordToday = today.format(cl.getTime());
 
-		// 進捗は未達成にする
-		Integer Nonprogress = 1;
-
-		Task task = new Task(id, categoryId, recordToday, title, Nonprogress, memo);
+		Task task = new Task(id, categoryId, recordToday, title, progress, memo);
 
 		taskRepository.save(task);
 
@@ -101,7 +105,13 @@ public class TaskController {
 			@RequestParam(defaultValue = "") String recordDay,
 			@RequestParam(defaultValue = "") String title,
 			@RequestParam(defaultValue = "") Integer progress,
-			@RequestParam(defaultValue = "") String memo) {
+			@RequestParam(defaultValue = "") String memo,
+			Model model) {
+
+		// categoriesテーブルから全カテゴリーを取得
+		List<Categories> categoryList = categoryRepository.findAll();
+
+		model.addAttribute("categories", categoryList);
 
 		Task task = taskRepository.findById(id).get();
 

@@ -6,39 +6,42 @@
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+	<div class="wrapper">
 	<header th:replace="~{header}"></header>
 	<main>
-	<table border="1">
-		<tr>
-			<th>登録日</th>
-			<th>タイトル</th>
-			<th>カテゴリー</th>
-			<th>進捗</th>
-			<th>内容</th>
-			<th>更新</th>
-			<th>削除</th>
-		</tr>
-		<tr th:each="task:${tasks}">
-			<td th:text="${task.recordDay}"></td>
-			<td th:text="${task.title}"></td>
-			<td th:text="${task.categories.name}"></td>
-			<td th:text="${task.progress}"></td>
-			<td th:text="${task.memo}"></td>
-			<td>
-				<form th:action="@{/tasks/{taskId}/edit(taskId=${task.id})}" method="get">
-					<button>更新</button>
-				</form>
-			</td>
-			<td>
-				<form th:action="@{/tasks/{taskId}/delete(taskId=${task.id})}" method="post">
-					<button>削除</button>
-				</form>
-			</td>
-		</tr>
-	</table>
+		<h1>お薬一覧</h1>
+		<table border="1">
+			<tr>
+				<th>もらった日</th>
+				<th>種類</th>
+				<th>タイプ</th>
+				<th>残量</th>
+				<th>飲むタイミングと量</th>
+				<th>チェック</th>
+				<th>削除</th>
+			</tr>
+			<tr th:each="task:${tasks}">
+				<td th:text="${task.recordDay}"></td>
+				<td th:text="${task.title}"></td>
+				<td th:text="${task.categories.name}"></td>
+				<td th:text="${task.progress}"></td>
+				<td th:text="${task.memo}"></td>
+				<td>
+					<form th:action="@{/tasks/{taskId}/edit(taskId=${task.id})}" method="get">
+						<button>チェック</button>
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/tasks/{taskId}/delete(taskId=${task.id})}" method="post">
+						<button>削除</button>
+					</form>
+				</td>
+			</tr>
+		</table>
 	</main>
 	<a href="/tasks/add">新規登録</a>
 	<a href="/categories">カテゴリー一覧</a>
 	<footer th:replace="~{footer}"></footer>
+	</div>
 </body>
 </html>

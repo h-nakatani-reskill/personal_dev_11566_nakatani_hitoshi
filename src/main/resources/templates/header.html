@@ -4,7 +4,7 @@
 	<a href="/logout">ログアウト</a>
 	<hr>
 	<nav>
-	<a href="/tasks">タスク一覧</a>
+	<a href="/tasks">お薬一覧</a>
 	<a th:each="category:${categories}"
 		th:href="@{/tasks(categoryId=${category.id})}"
 		th:text="${category.name}"

@@ -19,7 +19,6 @@ public class Task {
 	private Integer id;
 	@Column(name = "category_id")
 	private Integer categoryId;
-
 	@Column(name = "record_day")
 	private String recordDay;
 	private String title;
