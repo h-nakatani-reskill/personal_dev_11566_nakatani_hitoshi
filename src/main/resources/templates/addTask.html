@@ -15,26 +15,35 @@
 		<table border="1">
 			<tr>
 				<th>種類</th>
-				<td><input name="title"></td>
+				<td><input type="text" name="title" placeholder="例：錠剤" th:value="${title}"></td>
 			</tr>
 			<tr>
 				<th>カテゴリーID</th>
-				<td><input name="categoryId"></td>
+				<td>
+					<select name="categoryId">
+				    	<option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<th>登録日</th>
-				<td><input name="recordDay"></td>
+				<td><input type="text" name="recordDay" placeholder="YYYY/MM/DD"></td>
 			</tr>
 			<tr>
 				<th>残量</th>
-				<td><input name="progress"></td>
+				<td><input type="number" name="level" placeholder="60" value="60"></td>
 			</tr>
 			<tr>
-				<th>飲むタイミングと量</th>
-				<td><input name="memo"></td>
+				<th>服用量</th>
+				<td><input type="number" name="progress" placeholder="2" value="60"></td>
+			</tr>
+			<tr>
+				<th>飲むタイミング</th>
+				<td><input type="text" name="memo" placeholder="毎食後3つ" th:value="${memo}"></td>
 			</tr>
 		</table>
 		<button>登録</button>
+		<br><span th:text="${message}" style="color: red"></span>
 	</form>
 	</main>
 	<footer th:replace="~{footer}"></footer>

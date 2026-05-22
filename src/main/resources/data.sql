@@ -1,7 +1,8 @@
 --ユーザーテーブルデータ
+INSERT INTO users(name,email,password) VALUES('河童','kappa@kawatarou.com','kyuuri');
 INSERT INTO users(name,email,password) VALUES('田中一郎','tanaka@aaa.com','tanaka123');
---INSERT INTO users(email,name,password) VALUES('suzuki@bbb.com','鈴木次郎','suzuki456');
---INSERT INTO users(email,name,password) VALUES('kato@ccc.com','加藤三郎','kato123');
+INSERT INTO users(name,email,password) VALUES('鈴木次郎','suzuki@bbb.com','suzuki456');
+INSERT INTO users(name,email,password) VALUES('加藤三郎','kato@ccc.com','kato123');
 
 -- カテゴリーテーブルデータ
 INSERT INTO categories(name) VALUES('朝');

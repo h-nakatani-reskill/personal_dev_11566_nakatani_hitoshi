@@ -27,7 +27,8 @@
 				</form>
 			</td>
 			<td>
-				<form th:action="@{/categories/{categoryId}/delete(categoryId=${category.id})}" method="post">
+				<form th:action="@{/categories/{categoryId}/delete(categoryId=${category.id})}" method="post"
+				onsubmit="return checkDelete()">
 					<button>削除</button>
 				</form>
 			</td>
@@ -40,4 +41,13 @@
 	<footer th:replace="~{footer}"></footer>
 	</div>
 </body>
+<script>
+	function checkDelete() {
+		if (confirm("削除しますか")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
 </html>

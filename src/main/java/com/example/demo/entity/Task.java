@@ -17,6 +17,9 @@ public class Task {
 	@Id // 主キー
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 自動採番
 	private Integer id;
+	@Column(name = "user_id")
+	private Integer userId;
+
 	@Column(name = "category_id")
 	private Integer categoryId;
 	@Column(name = "record_day")
@@ -34,17 +37,21 @@ public class Task {
 	public Task() {
 	}
 
-	public Task(Integer id, Integer categoryId, String recordDay, String title, String memo) {
+	public Task(Integer id, Integer categoryId, String recordDay, String title, Integer level,
+			Integer progress, String memo) {
 		this.id = id;
 		this.categoryId = categoryId;
 		this.recordDay = recordDay;
 		this.title = title;
+		this.level = level;
+		this.progress = progress;
 		this.memo = memo;
 	}
 
-	public Task(Integer id, Integer categoryId, String recordDay, String title, Integer level, Integer progress,
-			String memo) {
+	public Task(Integer id, Integer userId, Integer categoryId, String recordDay, String title, Integer level,
+			Integer progress, String memo) {
 		this.id = id;
+		this.userId = userId;
 		this.categoryId = categoryId;
 		this.recordDay = recordDay;
 		this.title = title;
@@ -60,6 +67,14 @@ public class Task {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public Integer getCategoryId() {
