@@ -66,7 +66,7 @@ public class TaskController {
 			@RequestParam(defaultValue = "") Integer categoryId,
 			@RequestParam(defaultValue = "") String recordDay,
 			@RequestParam(defaultValue = "") String title,
-			@RequestParam(defaultValue = "") String level,
+			@RequestParam(defaultValue = "") Integer level,
 			@RequestParam(defaultValue = "") Integer progress,
 			@RequestParam(defaultValue = "") String memo,
 			Model model) {
@@ -105,7 +105,7 @@ public class TaskController {
 			@RequestParam(defaultValue = "") Integer categoryId,
 			@RequestParam(defaultValue = "") String recordDay,
 			@RequestParam(defaultValue = "") String title,
-			@RequestParam(defaultValue = "") String level,
+			@RequestParam(defaultValue = "") Integer level,
 			@RequestParam(defaultValue = "") Integer progress,
 			@RequestParam(defaultValue = "") String memo,
 			Model model) {
