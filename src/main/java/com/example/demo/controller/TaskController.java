@@ -201,7 +201,33 @@ public class TaskController {
 		return "redirect:/tasks";
 	}
 
-	//	Task task = taskRepository.findById(id);
-	//	after =  task.getLevel().get() - task.getProgress().get();
-	//	taskRepository.save(after)
+	@PostMapping("/tasks/{id}/done")
+	public String update(
+			@PathVariable Integer id,
+			@RequestParam(required = false) Integer level,
+			@RequestParam(required = false) Integer progress,
+			@RequestParam(required = false) Integer done,
+			Model model) {
+
+		//			未ログイン時にはエラー制御
+		//			if (account.getId() == null) {
+		//			    return "redirect:/login";
+		//			}
+
+		Task task = taskRepository.findById(id).get();
+
+		task.setProgress(progress);
+
+		Integer medicinelevel = task.getLevel();
+
+		Integer medicineProgress = task.getProgress();
+
+		done = medicinelevel - medicineProgress;
+
+		Task doneTask = new Task(id, progress, done);
+
+		taskRepository.save(doneTask);
+
+		return "redirect:/tasks";
+	}
 }

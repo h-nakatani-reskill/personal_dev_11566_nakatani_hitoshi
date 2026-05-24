@@ -37,6 +37,12 @@ public class Task {
 	public Task() {
 	}
 
+	public Task(Integer id, Integer level, Integer progress) {
+		this.id = id;
+		this.level = level;
+		this.progress = progress;
+	}
+
 	public Task(Integer id, Integer categoryId, String recordDay, String title, Integer level,
 			Integer progress, String memo) {
 		this.id = id;
