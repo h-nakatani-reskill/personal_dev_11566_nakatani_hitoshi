@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.PersonalDev11566NakataniHitoshiApplication;
 import com.example.demo.entity.Categories;
 import com.example.demo.entity.Task;
 import com.example.demo.model.Account;
@@ -22,18 +21,14 @@ import com.example.demo.repository.TaskRepository;
 @Controller
 public class TaskController {
 
-	private final PersonalDev11566NakataniHitoshiApplication personalDev11566NakataniHitoshiApplication;
-
 	private final CategoryRepository categoryRepository;
 	private final Account account;
 	private final TaskRepository taskRepository;
 
-	public TaskController(TaskRepository taskRepository, Account account, CategoryRepository categoryRepository,
-			PersonalDev11566NakataniHitoshiApplication personalDev11566NakataniHitoshiApplication) {
+	public TaskController(TaskRepository taskRepository, Account account, CategoryRepository categoryRepository) {
 		this.taskRepository = taskRepository;
 		this.account = account;
 		this.categoryRepository = categoryRepository;
-		this.personalDev11566NakataniHitoshiApplication = personalDev11566NakataniHitoshiApplication;
 	}
 
 	// タスク一覧表示
@@ -75,9 +70,19 @@ public class TaskController {
 		//		    return "redirect:/login";
 		//		}
 
+		// カテゴリーテーブルから全カテゴリーを取得する
 		List<Categories> categoryList = categoryRepository.findAll();
 
 		model.addAttribute("categories", categoryList);
+
+		// 登録日を仮登録する
+		Calendar cl = Calendar.getInstance();
+
+		//日付をyyyy-MM-ddの形で出力する
+		SimpleDateFormat today = new SimpleDateFormat("yyyy-MM-dd");
+		String recordToday = today.format(cl.getTime());
+
+		model.addAttribute("recordToday", recordToday);
 
 		return "addTask";
 	}
@@ -106,7 +111,10 @@ public class TaskController {
 		if (title.length() == 0) {
 			errorList.add("種類は必須です");
 		}
-		if (recordDay.length() == 1) {
+		if (categoryId == 0 || categoryId == null) {
+			errorList.add("カテゴリーは必須です");
+		}
+		if (recordDay.length() == 0) {
 			errorList.add("登録日は必須です");
 		}
 		if (level == 0 || level == null) {
@@ -117,6 +125,7 @@ public class TaskController {
 		}
 
 		if (errorList.size() > 0) {
+
 			model.addAttribute("errorList", errorList);
 			model.addAttribute(title);
 			model.addAttribute(recordDay);
@@ -124,15 +133,8 @@ public class TaskController {
 			return "addTask";
 		}
 
-		// categoriesテーブルから全カテゴリーを取得
-
-		Calendar cl = Calendar.getInstance();
-
-		//日付をyyyy/MM/ddの形で出力する
-		SimpleDateFormat today = new SimpleDateFormat("yyyy/MM/dd");
-		String recordToday = today.format(cl.getTime());
-
-		Task task = new Task(id, categoryId, recordToday, title, level, progress, memo);
+		// タスクを登録
+		Task task = new Task(id, categoryId, recordDay, title, level, progress, memo);
 
 		// アカウントIDとユーザーIDを紐づける
 		task.setUserId(account.getId());
@@ -151,7 +153,14 @@ public class TaskController {
 		//		    return "redirect:/login";
 		//		}
 
+		// カテゴリー情報をHTMLに送る
+		List<Categories> categoryList = categoryRepository.findAll();
+
+		model.addAttribute("categories", categoryList);
+
+		// タスク情報をHTMLに送る
 		Task task = taskRepository.findById(id).get();
+
 		model.addAttribute("task", task);
 
 		return "editTask";
@@ -174,13 +183,9 @@ public class TaskController {
 		//		    return "redirect:/login";
 		//		}
 
-		// categoriesテーブルから全カテゴリーを取得
-		List<Categories> categoryList = categoryRepository.findAll();
-
-		model.addAttribute("categories", categoryList);
-
 		Task task = taskRepository.findById(id).get();
 
+		// 各パラメータを保持
 		task.setCategoryId(categoryId);
 		task.setRecordDay(recordDay);
 		task.setTitle(title);
@@ -201,11 +206,17 @@ public class TaskController {
 		return "redirect:/tasks";
 	}
 
+	// 服用確認処理
 	@PostMapping("/tasks/{id}/done")
 	public String update(
 			@PathVariable Integer id,
+			@RequestParam(required = false) Integer categoryId,
+			@RequestParam(required = false) Integer userId,
+			@RequestParam(defaultValue = "") String recordDay,
+			@RequestParam(defaultValue = "") String title,
 			@RequestParam(required = false) Integer level,
 			@RequestParam(required = false) Integer progress,
+			@RequestParam(defaultValue = "") String memo,
 			@RequestParam(required = false) Integer done,
 			Model model) {
 
@@ -214,19 +225,19 @@ public class TaskController {
 		//			    return "redirect:/login";
 		//			}
 
+		// IDでテーブルを検索
 		Task task = taskRepository.findById(id).get();
 
-		task.setProgress(progress);
-
+		// 各数値を設定
 		Integer medicinelevel = task.getLevel();
 
 		Integer medicineProgress = task.getProgress();
 
 		done = medicinelevel - medicineProgress;
 
-		Task doneTask = new Task(id, progress, done);
+		task.setLevel(done);
 
-		taskRepository.save(doneTask);
+		taskRepository.save(task);
 
 		return "redirect:/tasks";
 	}

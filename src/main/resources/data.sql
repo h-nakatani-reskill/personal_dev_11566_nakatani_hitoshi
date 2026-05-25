@@ -8,9 +8,22 @@ INSERT INTO users(name,email,password) VALUES('加藤三郎','kato@ccc.com','kat
 INSERT INTO categories(name) VALUES('朝');
 INSERT INTO categories(name) VALUES('昼');
 INSERT INTO categories(name) VALUES('夜');
+INSERT INTO categories(name) VALUES('食事');
+INSERT INTO categories(name) VALUES('入浴後');
+INSERT INTO categories(name) VALUES('就寝前');
 INSERT INTO categories(name) VALUES('その他');
 
 -- タスクテーブルデータ
-INSERT INTO tasks(category_id,user_id,record_day,title,level,progress,memo) VALUES(1,1, '2025/12/31', '風邪薬', 20,2,'毎食後1つ');
-INSERT INTO tasks(category_id,user_id,record_day,title,level,progress,memo) VALUES(2,1, '2003/04/23', 'かゆみ止め',18,1, '1日2回');
-INSERT INTO tasks(category_id,user_id,record_day,title,level,progress,memo) VALUES(1,1, '2022/05/28', '酔い止め', 22,2,'乗車前2粒');
+INSERT INTO tasks(category_id,user_id,record_day,title,level,progress,memo) VALUES(1,1, '2025-12-31', '風邪薬', 20,2,'朝食後');
+INSERT INTO tasks(category_id,user_id,record_day,title,level,progress,memo) VALUES(2,1, '2003-04-23', '高血圧薬',20,1, '昼食後');
+INSERT INTO tasks(category_id,user_id,record_day,title,level,progress,memo) VALUES(3,1, '2022-05-28', '高血圧薬', 22,2,'夕食後');
+INSERT INTO tasks(category_id,user_id,record_day,title,level,progress,memo) VALUES(4,1, '2025-12-31', '軟膏', 20,2,'お茶はNG');
+INSERT INTO tasks(category_id,user_id,record_day,title,level,progress,memo) VALUES(5,1, '2003-04-23', 'かゆみ止め',18,1, '保湿クリームも塗る');
+INSERT INTO tasks(category_id,user_id,record_day,title,level,progress,memo) VALUES(6,1, '2022-05-28', '睡眠薬', 22,2,'白湯で飲む');
+INSERT INTO tasks(category_id,user_id,record_day,title,level,progress,memo) VALUES(7,1, '2022-05-28', '酔い止め', 22,2,'乗車前');
+INSERT INTO tasks(category_id,user_id,record_day,title,level,progress,memo) VALUES(1,2, '2025-12-31', '風邪薬', 20,2,'毎食後');
+INSERT INTO tasks(category_id,user_id,record_day,title,level,progress,memo) VALUES(2,2, '2003-04-23', 'かゆみ止め',18,1, '1日');
+INSERT INTO tasks(category_id,user_id,record_day,title,level,progress,memo) VALUES(3,2, '2022-05-28', '酔い止め', 22,2,'乗車前');
+INSERT INTO tasks(category_id,user_id,record_day,title,level,progress,memo) VALUES(1,3, '2025-12-31', '風邪薬', 20,2,'毎食後');
+INSERT INTO tasks(category_id,user_id,record_day,title,level,progress,memo) VALUES(2,3, '2003-04-23', 'かゆみ止め',18,1, '1日');
+INSERT INTO tasks(category_id,user_id,record_day,title,level,progress,memo) VALUES(1,3, '2022-05-28', '酔い止め', 22,2,'乗車前');
