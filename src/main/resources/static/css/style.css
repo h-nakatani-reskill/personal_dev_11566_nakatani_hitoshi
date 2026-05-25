@@ -19,7 +19,7 @@ header h1{
 	text-align: center;
 	font-size: 25pt;
 	margin: 5px;
-	width: 300px;
+	width: 200px;
 }
 
 #logrel{
@@ -33,15 +33,15 @@ header h1{
 	object-fit: cover; /* 画像が歪まないように調整 */
 }
 
+.headeraicon{
+	flex-grow: 1;
+	text-align: center;
+}
+
 img{
 	width: 50px;
 	height: 50px;
 	margin: 5px;
-}
-
-.headeraicon{
-	flex-grow: 1;
-	text-align: center;
 }
 
 .headeraicon:hover{
@@ -50,9 +50,6 @@ img{
 
 .aicontext{
 	color: #ffffff;
-}
-.aiconedge{
-	border-right: 1px solid #fff;
 }
 
 a + a{
@@ -150,6 +147,45 @@ a + a{
 
 /*全体*/
 
+/*ログイン画面*/
+
+.logininfo input{
+	width:200px;
+	height: 20px;
+}
+
+/*#box1 {*/
+/*    width: 50%;*/
+/*    height: 100%;*/
+/*    margin: 0px 0px 0px 50%;*/
+/*}*/
+
+/*#box1::before {*/
+/*    content: '';*/
+/*    width: 50%;*/
+/*    height: 100%;*/
+/*    background: url(/img/sweatpea001) no-repeat center center;*/
+/*    background-size: cover;*/
+/*    position: absolute;*/
+/*    top: 0px;*/
+/*    left: 0px;*/
+/*}*/
+
+/*#box1 h1 {*/
+/*    position: relative;*/
+/*    height: 100%;*/
+/*}*/
+
+/*#box1 h1 img {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    bottom: 0;*/
+/*    margin: auto;*/
+/*}*/
+
+/*一覧表示*/
 main {
   flex: 1; /* メインコンテンツを自動的に引き伸ばす */
   background-color: #F5FFFA;
