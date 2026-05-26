@@ -6,27 +6,47 @@
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-	<div class="wrapper">
-	<header class="login-header">
-		<h1>お薬日記帳</h1>
-	</header>
-	<main>
-<!--		<div id="box1">-->
-<!--			<h1><img src="/img/sweatpea001.png" alt="image"></h1>-->
-<!--		</div>-->
-		<h2>会員ログイン</h2>
-			<form action="/login" method="post" class="logininfo">
-				<br><input name="email" placeholder="メールアドレス">
-				<br><input name="password" placeholder="パスワード">
-				<br>
-				<br>
-				<br>
-				<button>ログイン</button>
-				<br><span th:text="${message}" style="color: red"></span>
-			</form>
-			<a href="/account">新規会員登録</a>
-	</main>
-	<footer th:replace="~{footer}"></footer>
+	<div class="container">
+		<div class="image-box">
+			<img src="/img/hydrangea_blue.jpg" at="hydrangea">
+		</div>
+		<div class="text-box">
+			<header class="login-header">
+				<h1>お薬日記帳</h1>
+			</header>
+			<main class="login-main">
+				<div class="backcolor">
+					<h2>会員ログイン</h2>
+					<form action="/login" method="post" class="logininfo">
+						<br>
+						<input name="email" class="login-input" placeholder="メールアドレス">
+						<br>
+						<input name="password" class="login-input" placeholder="パスワード">
+						<br>
+						<br>
+						<button class="login-button">
+							<div class="loginasset">
+								<div class="aicontext">ログイン</div>
+								<img src="/img/signin.png" alt="signin" class="logimg">
+							</div>
+						</button>
+						
+						<br>
+						<span th:text="${message}" style="color: red"></span>
+					</form>
+					<br>
+					<button class="login-button">
+						<a href="/account" class="loginasset">
+							<div class="aicontext">新規登録</div>
+							<img src="/img/register.png" alt="register" class="logimg">
+						</a>
+					</button>
+				</div>
+			</main>
+			<footer class="login-footer">
+				<small class="aicontext">&copy; ABC薬局</small>
+			</footer>
+		</div>
 	</div>
 </body>
 </html>

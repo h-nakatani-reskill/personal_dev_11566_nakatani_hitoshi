@@ -35,6 +35,8 @@ public class TaskController {
 	@GetMapping("/tasks")
 	public String index(
 			@RequestParam(required = false) Integer categoryId,
+			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "") String recordDay,
 			Model model) {
 
 		//		未ログイン時にはエラー制御
@@ -48,15 +50,47 @@ public class TaskController {
 		model.addAttribute("categories", categoryList);
 
 		// 商品一覧orカテゴリー一覧を取得
+
 		List<Task> taskList = null;
 
-		if (categoryId == null) {
-			taskList = taskRepository.findByUserId(account.getId());
+		// キーワードがある場合
+		if (!keyword.isEmpty()) {
+
+			// キーワードあり、日時指定あり→複合検索
+			if (!recordDay.isEmpty()) {
+				taskList = taskRepository.findByTitleLikeAndRecordDayOrderByRecordDayAsc("%" + keyword + "%",
+						recordDay);
+
+				// キーワードあり、日時指定なし→キーワード検索
+			} else {
+
+				taskList = taskRepository.findByTitleLikeOrderByRecordDayAsc("%" + keyword + "%");
+
+			}
+
+			// キーワードがない場合
 		} else {
-			taskList = taskRepository.findByUserIdAndCategoryId(account.getId(), categoryId);
+
+			// キーワードなし、日時指定あり→日時検索
+			if (!recordDay.isEmpty()) {
+				taskList = taskRepository.findByRecordDayOrderByRecordDayAsc(recordDay);
+
+				// キーワードなし、日時指定なし、カテゴリー指定なし→一覧表示
+
+			} else if (categoryId == null) {
+
+				taskList = taskRepository.findByUserIdOrderByRecordDayAsc(account.getId());
+
+				// キーワードなし、日時指定なし、カテゴリー指定あり→カテゴリー検索
+			} else {
+
+				taskList = taskRepository.findByUserIdAndCategoryIdOrderByRecordDayAsc(account.getId(), categoryId);
+			}
 		}
 
 		model.addAttribute("tasks", taskList);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("recordDay", recordDay);
 
 		return "tasks";
 	}

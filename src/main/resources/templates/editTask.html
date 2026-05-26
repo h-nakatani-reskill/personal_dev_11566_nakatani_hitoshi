@@ -6,51 +6,49 @@
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-	<div class="wrapper">
 	<header th:replace="~{header}"></header>
-	<main>
+	<main class="common-main">
 		<h1>お薬情報更新</h1>
 		<form th:action="@{/tasks/{taskId}/edit(taskId=${task.id})}" method="post" 
 				onsubmit="return checkEdit()">
-			<table border="1">
+			<table border="1" class="main-table">
 				<tr>
 					<th>カテゴリーID</th>
-					<td>
-						<select name="categoryId">
+					<td class="addbox">
+						<select name="categoryId" class="addessence">
 							<option>カテゴリーを選択してください</option>
 							<option th:each="category:${categories}"
 									th:value="${category.id}"
-									th:text="${category.name}">
+									th:text="${category.name}" selected>
 							</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<th>もらった日</th>
-					<td><input type="date" name="recordDay" th:value="${task.recordDay}"></td>
+					<td class="addbox"><input type="date" name="recordDay" th:value="${task.recordDay}" class="addessence"></td>
 				</tr>
 				<tr>
 					<th>タイプ</th>
-					<td><input name="title" th:value="${task.title}"></td>
+					<td class="addbox"><input name="title" th:value="${task.title}" class="addessence"></td>
 				</tr>
 				<tr>
 					<th>残量</th>
-					<td><input name="level" th:value="${task.level}"></td>
+					<td class="addbox"><input name="level" th:value="${task.level}" class="addessence"></td>
 				</tr>
 				<tr>
 					<th>服用量</th>
-					<td><input name="progress" th:value="${task.progress}"></td>
+					<td class="addbox"><input name="progress" th:value="${task.progress}" class="addessence"></td>
 				</tr>
 				<tr>
 					<th>飲むタイミング</th>
-					<td><input name="memo" th:value="${task.memo}"></td>
+					<td class="addbox"><input name="memo" th:value="${task.memo}" class="addessence"></td>
 				</tr>
 			</table>
-			<button>更新</button>
+			<button class="button-main">更新</button>
 		</form>
 	</main>
 	<footer th:replace="~{footer}"></footer>
-	</div>
 </body>
 <script>
 	function checkEdit() {

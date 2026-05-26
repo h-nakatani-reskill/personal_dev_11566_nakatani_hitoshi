@@ -1,4 +1,4 @@
-<header>
+<header class="common-header">
 	<button class="hamburger-menu" aria-label="メニューを開く">
 	  <span class="hamburger-line"></span>
 	  <span class="hamburger-line"></span>
@@ -8,8 +8,8 @@
 	<nav class="slide-menu left">
 	  <ul class="menu-list">
 	    <li><a href="/tasks">アプリ概要</a></li>
-	    <li><a href="/tasks">くすり一覧</a></li>
-	    <li><a href="/task/add">新しいおくすり</a></li>
+	    <li><a href="/tasks">おくすり一覧</a></li>
+	    <li><a href="/tasks/add">新しいおくすり</a></li>
 	    <li><a href="/categories">カテゴリー一覧</a></li>
 		<li><a href="/categories/add">新しいカテゴリー</a></li>
 	  </ul>
@@ -18,38 +18,43 @@
 	<nav class="aicon">
 		<h1><a href="/tasks">お薬日記帳</a></h1>
 		<a href="/tasks" class="headeraicon">
-			<img src="/img/medicinebox.png" alt="medecin" href="/tasks">
+			<img src="/img/medicinebox.png" alt="medecin" href="/tasks" class="header-img">
 			<div class="aicontext">All</div>
 		</a>
 		<a href="/tasks?categoryId=1" class="headeraicon">
-			<img src="/img/morning.png" alt="morning">
+			<img src="/img/morning.png" alt="morning" class="header-img">
 			<div class="aicontext">Morning</div>
 		</a>
 		<a href="/tasks?categoryId=2" class="headeraicon">
-			<img src="/img/lunch.png" alt="lunch">
+			<img src="/img/lunch.png" alt="lunch" class="header-img">
 			<div class="aicontext">Lunch</div>
 		</a>
 		<a href="/tasks?categoryId=3" class="headeraicon">
-			<img src="/img/night.png" alt="night">
+			<img src="/img/night.png" alt="night" class="header-img">
 			<div class="aicontext">Night</div>
 		</a>
 		<a href="/tasks?categoryId=4" class="headeraicon">
-			<img src="/img/meal.png" alt="meal">
+			<img src="/img/meal.png" alt="meal" class="header-img">
 			<div class="aicontext">Meal</div>
 		</a>
 		<a href="/tasks?categoryId=5" class="headeraicon">
-			<img src="/img/bathduck.png" alt="bath">
+			<img src="/img/bathduck.png" alt="bath" class="header-img">
 			<div class="aicontext">Bath</div>
 		</a>
 		<a href="/tasks?categoryId=6" class="headeraicon">
-			<img src="/img/bed.png" alt="bed">
+			<img src="/img/bed.png" alt="bed" class="header-img">
 			<div class="aicontext">Bed</div>
 		</a>
 		<div id="logrel">
-			<span th:text="${@account.name}+'さんがログイン中'"></span>
+			<span th:text="${@account.name}+'さんがログイン中'" class="username"></span>
 			<br>
 			<a href="/logout">
-				<button>ログアウト</button>
+				<button class="button-main">
+					<div class="loginasset">
+						<div class="aicontext">ログアウト</div>
+						<img src="/img/signout.png" alt="signout" class="logimg">
+					</div>
+				</button>
 			</a>
 		</div>
 	</nav>

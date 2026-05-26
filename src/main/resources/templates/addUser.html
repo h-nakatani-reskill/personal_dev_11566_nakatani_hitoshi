@@ -7,31 +7,44 @@
 
 </head>
 <body>
-	<header>
-			<h1>お薬日記帳</h1>
-	</header>
-	<main>
-		<form action="/account" method="post">
-			<ul th:if="${errorList}" class="error">
-				<li th:each="error:${errorList}" th:text="${error}"></li>
-			</ul>
-			<table border="1">
-				<tr>
-					<th>名前</th>
-					<td><input type="text" name="name" placeholder="名前" th:value="${name}"></td>
-				</tr>
-				<tr>
-					<th>メールアドレス</th>
-					<td><input type="text" name="email" placeholder="メールアドレス" th:value="${email}"></td>
-				</tr>
-				<tr>
-					<th>パスワード</th>
-					<td><input type="text" name="password" placeholder="パスワード" th:value="${password}"></td>
-				</tr>
-			</table>
-			<button>登録</button>
-		</form>
-	</main>
-	<footer th:replace="~{footer}"></footer>
+	<div class="container">
+			<div class="image-box">
+				<img src="/img/hydrangea_blue.jpg" at="hydrangea">
+			</div>
+			<div class="text-box">
+					<header class="login-header">
+							<h1>お薬日記帳</h1>
+					</header>
+					<main class="login-main">
+						<div class="backcolor">
+							<form action="/account" method="post">
+								<h2>新規会員登録</h2>
+								<ul th:if="${errorList}" class="error">
+									<li th:each="error:${errorList}" th:text="${error}"></li>
+								</ul>
+								<br>
+								<input type="text" name="name" class="login-input" placeholder="名前" th:value="${name}">
+		
+								<br>
+								<input type="text" name="email" class="login-input" placeholder="メールアドレス" th:value="${email}">
+								
+								<br>
+								<input type="text" name="password" class="login-input" placeholder="パスワード" th:value="${password}">
+								
+								<br>
+								<div class="niche">
+									<button class="button-main">登録</button>
+								</div>
+								
+							</form>
+						</div>
+					</main>
+					<footer class="login-footer">
+						<small>&copy; ABC薬局</small>
+					</footer>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
