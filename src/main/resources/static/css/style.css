@@ -2,7 +2,7 @@
 
 /*共通ヘッダー*/
 .common-header,.nav,.common-footer{
-	background-color: #C6EEDD; /*背景色*/
+	background-color: #B5E0EB; /*背景色*/
 	color: #ffffff; /*文字色*/
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -191,7 +191,7 @@ a {
 
 /*ログイン画面ヘッダー、ナビ、フッター*/
 .login-header,.login-footer{
-	background-color:#C6EEDD; /*背景色*/
+	background-color:#B5E0EB; /*背景色*/
 	color: #ffffff; /*文字色*/
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -227,6 +227,7 @@ a {
 }
 
 .login-main h2{
+	font-weight: 500;
 	margin-top: 50px;
 	text-decoration: underline;
 }
@@ -275,9 +276,9 @@ a {
 	font-weight: 600;
 	margin: 2px;
 	padding: 5px 20px;
-	background-color:#FFB3B3;
+	background-color:#FF9BAA;
 	color: #ffffff;
-	border: none;
+	border: 2px #ffffff;
 	width: 150px;
 	cursor: pointer;
 	/* 変化をなめらかにする時間を設定 */
