@@ -16,10 +16,10 @@
 					<th>カテゴリーID</th>
 					<td class="addbox">
 						<select name="categoryId" class="addessence">
-							<option>カテゴリーを選択してください</option>
+							<option selected>カテゴリーを選択してください</option>
 							<option th:each="category:${categories}"
 									th:value="${category.id}"
-									th:text="${category.name}" selected>
+									th:text="${category.name}">
 							</option>
 						</select>
 					</td>
